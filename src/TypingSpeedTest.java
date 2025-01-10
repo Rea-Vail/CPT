@@ -4,9 +4,12 @@
  * CPT main 
  */
 
+// Heavily inspired by most typing games such as monkeytype
+// https://monkeytype.com/ 
 // Importing the libraries needed for this typingspeedtest
 // importing list and linkedlist
 import java.util.List;
+import java.util.Scanner;
 import java.util.LinkedList;
 
 
@@ -36,6 +39,7 @@ public class TypingSpeedTest {
     }
 
     // Main method of running TypingSpeedtest
+    // Added a scanner for the user to type the words out!
     // will add the test later woo
     /**
      * This will be the main method of the TypingSpeedTest we're all the expressions of words will be 
@@ -44,14 +48,27 @@ public class TypingSpeedTest {
      * 
      */
     public static void main(String[] args) {
+        // Display a welcome message to the user in the terminal
+        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
+        System.out.println("(~~~~~~~ Typing Speed Test ~~~~~~)");
+        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
+        System.out.println("(Welcome to the Typing Speed Test!)");
+        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
+        
+        // goes through if the user clicks enter
+        Scanner scanner = new Scanner(System.in);
         TypingSpeedTest test = new TypingSpeedTest();
         test.addExpression("Yo yo yo what's up!");
         test.addExpression("I LOVE CANADA");
-        
+        System.out.println("Enter your words");
+        String userExpressString = scanner.nextLine();
+            
         // adds for loop
         for (Expression expression : test.getExpressions()) {
             System.out.println(expression.getText());
         }
+        // closes the scanner
+        scanner.close();
     }
 }
 
@@ -77,11 +94,12 @@ class Expression {
 
 /**
  * Creates a class for expressionManager
- * @param expressionManager represents linkedlist for the expressions and it will manage the expressions of words
+ * @param ExpressionManager represents linkedlist for the expressions and it will manage the expressions of words
  * It will be stored as a linkedlist in this following class!
  */
 
-class expressionManager {
+// little issue was the name fixed changed!
+class ExpressionManager {
     // instance variable for expressions as linkedlist
     private List<Expression> expressions;
 
@@ -108,6 +126,8 @@ class expressionManager {
  */
 class Timer extends Expression {
     // Implemented a long data type that basically represents the int values of the time
+    // I got this data type from this
+    // https://www.w3schools.com/java/java_data_types.asp 
     private long startTime;
     private long endTime;
 
@@ -115,6 +135,9 @@ class Timer extends Expression {
         super(text);
     }
 
+    // This is both the start and stop method for the timer itself
+    // the data type I got 1currentTimeMillis is from this
+    // https://www.tutorialspoint.com/java/lang/system_currenttimemillis.htm 
     public void start() {
         startTime = System.currentTimeMillis();
     }
