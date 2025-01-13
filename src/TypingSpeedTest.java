@@ -58,33 +58,13 @@ public class TypingSpeedTest {
         // goes through if the user clicks enter
         Scanner scanner = new Scanner(System.in);
         TypingSpeedTest test = new TypingSpeedTest();
-        // prints out the timer
-        Timer timer = new Timer("Typing test timer test");
+        test.addExpression("Yo yo yo what's up!");
+        test.addExpression("I LOVE CANADA");
         
-
-        // welcome message for the user
-        System.out.println("Enter your words");
-        timer.start();
-        String userExpressString = scanner.nextLine();
-        test.addExpression(userExpressString);
-        timer.stop();
-        
-        // prints out the time that the user will take to type the words.
-        test.addExpression(userExpressString);
-
-        // Calculation for words per minute
-        // this calculation is to count the number of words of what the user will input and stores those numbers in this variable
-        int wordCount = userExpressString.split("\\s+").length; 
-        double wpm = timer.calculateWPM(wordCount);
-
-        // adds for loop to go through the expressions and prints out the WPM word per minute
+        // adds for loop
         for (Expression expression : test.getExpressions()) {
             System.out.println(expression.getText());
         }
-        // prints out the WPM results
-        System.out.println("Words per minute:" + wpm);
-        // closes the scanner
-        scanner.close();
     }
 }
 
@@ -189,7 +169,7 @@ class Timer extends Expression {
     
 }
 
-
+//eee
 // will fix how the WPM work this is just testing! 8:50 pm saturyday
 // Ill add more stuff later 8:31 pm real
 // will fix all the errors later!
