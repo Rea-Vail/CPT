@@ -173,3 +173,4 @@ class Timer extends Expression {
 // will fix how the WPM work this is just testing! 8:50 pm saturyday
 // Ill add more stuff later 8:31 pm real
 // will fix all the errors later!
+//...
