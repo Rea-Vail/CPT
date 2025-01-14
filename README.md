@@ -5,7 +5,7 @@ Typing test made simple and friendly.
 A simple typing test designed to help both beginners and experienced typists improve their typing skills.
 
 
-## Installion
+## Installation
 
 To Install Typing Test, follow the steps below:
 
@@ -18,7 +18,7 @@ To Install Typing Test, follow the steps below:
 - more of them
 
 # Credits
-- [Arwin Lado] (https://github.com/Rea-Vail)
+- Programmer -Arwin Lado (https://github.com/Rea-Vail)
 
 
 ```java
