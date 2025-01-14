@@ -16,7 +16,7 @@ import java.util.Scanner;
 // Main class TypingSpeedTest
 public class TypingSpeedTest {
     // add a private static final string for the welcome message moved here
-    private static final String WELCOME_MESSAGE = "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
+    private static final String welcoming_message = "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
                                                 + "(~~~~~~~ Typing Speed Test ~~~~~~)\n"
                                                 + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
                                                 + "(Welcome to the Typing Speed Test!)\n"
@@ -47,77 +47,90 @@ public class TypingSpeedTest {
      * @param args represents the command line arguments
      */
     public static void main(String[] args) {
-        // Prints out the welcome message here for the user 
-        System.out.println(WELCOME_MESSAGE);
         Scanner scanner = new Scanner(System.in);
-        
-        // Moved the typing test here and the timer
-        TypingSpeedTest test = new TypingSpeedTest();
-        Timer timer = new Timer(); // Removed the unnecessary parameter
+        boolean playAgain = true;
 
-        // Adding difficulty that the user can choose
-        // by picking 1, 2 or 3
-        System.out.println("1. Easy Level ");
-        System.out.println("2. Medium Level");
-        System.out.println("3. Proficient level");
-        System.out.println("Pick your difficulty");
+        while (playAgain) {
+            // Prints out the welcome message here for the user 
+            System.out.println(welcoming_message);
+            
+            // Moved the typing test here and the timer
+            TypingSpeedTest test = new TypingSpeedTest();
+            Timer timer = new Timer(); // Removed the unnecessary parameter
 
-        // Allows the user to pick which difficulty they want.
-        int picking = scanner.nextInt();
-        // flushes the line
-        scanner.nextLine();
-        
-        // List of words for each level that they will type
-        List<String> easyLevel = Arrays.asList("The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog");
-        List<String> mediumLevel = Arrays.asList("I", "am", "a", "student", "at", "Father", "Michael", "Goetz", "Secondary", "School");
-        List<String> proficientLevel = Arrays.asList("This", "computer", "science", "course", "is", "one", "of", "the", "best", "courses", "I", "have", "ever", "taken", "and", "I", "would recommend", "it", "to", "anyone", "who", "is", "interested", "in", "learning", "how", "to", "computer science");
+            // Adding difficulty that the user can choose
+            // by picking 1, 2 or 3
+            System.out.println("1. Easy Level ");
+            System.out.println("2. Medium Level");
+            System.out.println("3. Proficient level");
+            System.out.println("Pick your difficulty");
 
-        // This is the list of the level selected by the user
-        List<String> selectedLevel = null;
+            // Allows the user to pick which difficulty they want.
+            int picking = scanner.nextInt();
+            // flushes the line
+            scanner.nextLine();
+            
+            // List of words for each level that they will type
+            List<String> easyLevel = Arrays.asList("The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog");
+            List<String> mediumLevel = Arrays.asList("I", "am", "a", "student", "at", "Father", "Michael", "Goetz", "Secondary", "School");
+            List<String> proficientLevel = Arrays.asList("This", "computer", "science", "course", "is", "one", "of", "the", "best", "courses", "I", "have", "ever", "taken", "and", "I", "would recommend", "it", "to", "anyone", "who", "is", "interested", "in", "learning", "how", "to", "computer science");
 
-        // Implemented a switch statement for the user to pick their level
-        switch(picking) {
-            case 1:
-                selectedLevel = easyLevel;
-                break;
-            case 2:
-                selectedLevel = mediumLevel;
-                break;
-            case 3:
-                selectedLevel = proficientLevel;
-                break;
-            default:
-                System.out.println("No level was chosen. Quitting the game....");
-                scanner.close();
-                return;
+            // This is the list of the level selected by the user
+            List<String> selectedLevel = null;
+
+            // Implemented a switch statement for the user to pick their level
+            switch(picking) {
+                case 1:
+                    selectedLevel = easyLevel;
+                    break;
+                case 2:
+                    selectedLevel = mediumLevel;
+                    break;
+                case 3:
+                    selectedLevel = proficientLevel;
+                    break;
+                default:
+                    System.out.println("No level was chosen. Quitting the game....");
+                    scanner.close();
+                    return;
+            }
+
+            // This section displays the words that the user selected level will be
+            System.out.println("Enter the following");
+            for (String word : selectedLevel) {
+                System.out.print(word + " ");
+            }
+            System.out.println();
+
+            // welcome message for the user
+            System.out.println("Enter your words");
+            timer.start();
+            String userExpressString = scanner.nextLine();
+            test.addExpression(userExpressString);
+            timer.stop();
+
+            // Calculation for words per minute
+            // this calculation is to count the number of words of what the user will input
+            // and stores those numbers in this variable
+            int wordCount = userExpressString.split("\\s+").length;
+            double wpm = timer.calculateWPM(wordCount);
+
+            // adds for loop to go through the expressions and prints out the WPM word per minute
+            for (Expression expression : test.getExpressions()) {
+                System.out.println(expression.getText());
+            }
+            // prints out the WPM results
+            System.out.println("Words per minute: " + wpm);
+
+            // Implementing a play again feature if the user says yes it will play again
+            System.out.println("Congrants for playing! Do you want to play again? (yes/no)");
+            // my source is here https://docs.oracle.com/en/java/javacard/3.1/guide/response-string-description.html
+            String response = scanner.nextLine(); // String respoinse are ways resoibse and enter the words
+            // a simple if statement if the user says no the games will stop
+            if (!response.equalsIgnoreCase("yes")) {
+                playAgain = false;
+            }
         }
-
-        // This section displays the words that the user selected level will be
-        System.out.println("Enter the following");
-        for (String word : selectedLevel) {
-            System.out.println(word + " ");
-        }
-        System.out.println();
-
-        // welcome message for the user
-        System.out.println("Enter your words");
-        timer.start();
-        String userExpressString = scanner.nextLine();
-        test.addExpression(userExpressString);
-        timer.stop();
-
-        // Calculation for words per minute
-        // this calculation is to count the number of words of what the user will input
-        // and stores those numbers in this variable
-        int wordCount = userExpressString.split("\\s+").length;
-        double wpm = timer.calculateWPM(wordCount);
-
-        // adds for loop to go through the expressions and prints out the WPM word per minute
-        for (Expression expression : test.getExpressions()) {
-            System.out.println(expression.getText());
-        }
-        // prints out the WPM results
-        System.out.println("Words per minute: " + wpm);
         // closes the scanner
         scanner.close();
     }
