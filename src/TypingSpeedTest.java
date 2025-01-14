@@ -73,7 +73,7 @@ public class TypingSpeedTest {
             // List of words for each level that they will type
             List<String> easyLevel = Arrays.asList("The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog");
             List<String> mediumLevel = Arrays.asList("I", "am", "a", "student", "at", "Father", "Michael", "Goetz", "Secondary", "School");
-            List<String> proficientLevel = Arrays.asList("This", "computer", "science", "course", "is", "one", "of", "the", "best", "courses", "I", "have", "ever", "taken", "and", "I", "would recommend", "it", "to", "anyone", "who", "is", "interested", "in", "learning", "how", "to", "computer science");
+            List<String> proficientLevel = Arrays.asList("This", "computer", "science", "course", "is", "one", "of", "the", "best", "courses", "I", "have", "ever", "taken", "and", "I", "would recommend", "it", "to", "anyone", "who", "is", "interested", "in", "learning", "how", "to", "do", "computer science");
 
             // This is the list of the level selected by the user
             List<String> selectedLevel = null;
@@ -123,7 +123,7 @@ public class TypingSpeedTest {
             System.out.println("Words per minute: " + wpm);
 
             // Implementing a play again feature if the user says yes it will play again
-            System.out.println("Congrants for playing! Do you want to play again? (yes/no)");
+            System.out.println("Congrats for playing! Do you want to play again? (yes/no)");
             // my source is here https://docs.oracle.com/en/java/javacard/3.1/guide/response-string-description.html
             String response = scanner.nextLine(); // String respoinse are ways resoibse and enter the words
             // a simple if statement if the user says no the games will stop
@@ -237,3 +237,5 @@ class Timer  {
         return wordCount / elapsedTimeMinutes;
     }
 }
+
+// going to implement int checker.
