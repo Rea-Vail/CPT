@@ -200,7 +200,7 @@ class ExpressionManager {
  * @return startime returns the start time while endtime returns the end time after the test is finish
  * After it over it will return the WPM and time remaining of the test!
  */
-class Timer {
+class Timer  {
     // Implemented a long data type that basically represents the int values of the
     // time
     // I got this data type from this
