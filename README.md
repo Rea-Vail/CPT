@@ -18,7 +18,7 @@ To Install Typing Test, follow the steps below:
 - more of them
 
 # Credits
-- Programmer [Arwin Lado] (https://github.com/Rea-Vail)
+- [Arwin Lado] (https://github.com/Rea-Vail)
 
 
 ```java
