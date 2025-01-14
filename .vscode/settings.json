@@ -4,5 +4,6 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ],
-    "discord.enabled": false
+    "discord.enabled": false,
+    "java.debug.settings.onBuildFailureProceed": true
 }

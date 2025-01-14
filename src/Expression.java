@@ -4,6 +4,12 @@
  * Expression class 
  */
 
+ /**
+  * This class is the expression were the user will type the words out in a string
+  * @param String text reoresebts the text of the expression
+  * @return text returns the text of the expression
+  * It works as a way for the words to be placed here after the user is done typing.
+  **/
 public class Expression {
     // creates a private string for text
     private String text;

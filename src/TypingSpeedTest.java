@@ -7,18 +7,24 @@
 // Heavily inspired by most typing games such as monkeytype
 // https://monkeytype.com/ 
 // Importing the libraries needed for this typingspeedtest
-// importing list and linkedlist
+// importing list, linkedlist and arrays
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-// Main class Typingtype
+// Main class TypingSpeedTest
 public class TypingSpeedTest {
-    // Instance private variable ExpressManager
+    // add a private static final string for the welcome message moved here
+    private static final String WELCOME_MESSAGE = "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
+                                                + "(~~~~~~~ Typing Speed Test ~~~~~~)\n"
+                                                + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
+                                                + "(Welcome to the Typing Speed Test!)\n"
+                                                + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)";
+    // Instance private variable ExpressionManager
     private ExpressionManager expressionManager;
 
-    // Creates a overloaded constructor for TypingSpeedTest
-    // @this.expressManaager as a instance variable
+    // Creates a constructor for TypingSpeedTest
     public TypingSpeedTest() {
         this.expressionManager = new ExpressionManager();
     }
@@ -30,30 +36,25 @@ public class TypingSpeedTest {
         expressionManager.addExpression(new Expression(expression));
     }
 
-    // will fix this later
-    // This is were the linkedlist well be added
-    // Returning the linkedlist of the expressions of what will the user will say
+    // Returning the linked list of the expressions of what the user will say
     public List<Expression> getExpressions() {
         return expressionManager.getExpressions();
     }
 
-    // Main method of running TypingSpeedtest
+    // Main method of running TypingSpeedTest
     /**
      * Main method for TypingSpeedTest that will run the test and display the words.
-     * @param timer represents the timer for the typing speed test
-     * @param test represents the test TypingSpeedTest
-     * @param wordCount word counts the user words in the test
-     * @param wpm represents words per minute
-     * 
+     * @param args represents the command line arguments
      */
     public static void main(String[] args) {
-        // Display a welcome message to the user in the terminal
-        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
-        System.out.println("(~~~~~~~ Typing Speed Test ~~~~~~)");
-        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
-        System.out.println("(Welcome to the Typing Speed Test!)");
-        System.out.println("(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)");
+        // Prints out the welcome message here for the user 
+        System.out.println(WELCOME_MESSAGE);
+        Scanner scanner = new Scanner(System.in);
         
+        // Moved the typing test here and the timer
+        TypingSpeedTest test = new TypingSpeedTest();
+        Timer timer = new Timer(); // Removed the unnecessary parameter
+
         // Adding difficulty that the user can choose
         // by picking 1, 2 or 3
         System.out.println("1. Easy Level ");
@@ -61,17 +62,42 @@ public class TypingSpeedTest {
         System.out.println("3. Proficient level");
         System.out.println("Pick your difficulty");
 
-        // goes through if the user clicks enter
-        Scanner scanner = new Scanner(System.in);
         // Allows the user to pick which difficulty they want.
         int picking = scanner.nextInt();
         // flushes the line
         scanner.nextLine();
-
         
-        TypingSpeedTest test = new TypingSpeedTest();
-        // prints out the timer
-        Timer timer = new Timer("Typing test timer test");
+        // List of words for each level that they will type
+        List<String> easyLevel = Arrays.asList("The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog");
+        List<String> mediumLevel = Arrays.asList("I", "am", "a", "student", "at", "Father", "Michael", "Goetz", "Secondary", "School");
+        List<String> proficientLevel = Arrays.asList("This", "computer", "science", "course", "is", "one", "of", "the", "best", "courses", "I", "have", "ever", "taken", "and", "I", "would recommend", "it", "to", "anyone", "who", "is", "interested", "in", "learning", "how", "to", "computer science");
+
+        // This is the list of the level selected by the user
+        List<String> selectedLevel = null;
+
+        // Implemented a switch statement for the user to pick their level
+        switch(picking) {
+            case 1:
+                selectedLevel = easyLevel;
+                break;
+            case 2:
+                selectedLevel = mediumLevel;
+                break;
+            case 3:
+                selectedLevel = proficientLevel;
+                break;
+            default:
+                System.out.println("No level was chosen. Quitting the game....");
+                scanner.close();
+                return;
+        }
+
+        // This section displays the words that the user selected level will be
+        System.out.println("Enter the following");
+        for (String word : selectedLevel) {
+            System.out.println(word + " ");
+        }
+        System.out.println();
 
         // welcome message for the user
         System.out.println("Enter your words");
@@ -80,22 +106,18 @@ public class TypingSpeedTest {
         test.addExpression(userExpressString);
         timer.stop();
 
-        // prints out the time that the user will take to type the words.
-        test.addExpression(userExpressString);
-
         // Calculation for words per minute
         // this calculation is to count the number of words of what the user will input
         // and stores those numbers in this variable
         int wordCount = userExpressString.split("\\s+").length;
         double wpm = timer.calculateWPM(wordCount);
 
-        // adds for loop to go through the expressions and prints out the WPM word per
-        // minute
+        // adds for loop to go through the expressions and prints out the WPM word per minute
         for (Expression expression : test.getExpressions()) {
             System.out.println(expression.getText());
         }
         // prints out the WPM results
-        System.out.println("Words per minute:" + wpm);
+        System.out.println("Words per minute: " + wpm);
         // closes the scanner
         scanner.close();
     }
@@ -121,8 +143,6 @@ class Expression {
         return text;
     }
 
-    // Added a tostring method for the text/Expression class for better
-    // understanding
     // This toString returns the text of the expression
     @Override
     public String toString() {
@@ -143,7 +163,7 @@ class ExpressionManager {
     // instance variable for expressions as linkedlist
     private List<Expression> expressions;
 
-    // constructor for the expression
+    // constructor for the expression manager
     public ExpressionManager() {
         this.expressions = new LinkedList<>();
     }
@@ -161,24 +181,19 @@ class ExpressionManager {
 }
 
 /**
- * Creates a class for timer that extends the expression used for timing the
- * user typing the words out!
- * @param Timer represents the timer for the time how long can the user type the words
- * @param startTime represents the start time of the timer
- * @param endTime reppresents the end time of the timer 
- * @return This will return that the time has passed after the user has typed the words.
+ * Creates a class for Timer
+ * This class is used for timing the user typing the words out!
+ * @param timer represents the timer for the user typing the words
+ * @return startime returns the start time while endtime returns the end time after the test is finish
+ * After it over it will return the WPM and time remaining of the test!
  */
-class Timer extends Expression {
+class Timer {
     // Implemented a long data type that basically represents the int values of the
     // time
     // I got this data type from this
     // https://www.w3schools.com/java/java_data_types.asp
     private long startTime;
     private long endTime;
-
-    public Timer(String text) {
-        super(text);
-    }
 
     // This is both the start and stop method for the timer itself
     // the data type I got 1currentTimeMillis is from this
@@ -191,25 +206,21 @@ class Timer extends Expression {
         endTime = System.currentTimeMillis();
     }
 
-    // Elasped time is a way for calculating and returning the time has passed
+    // Elapsed time is a way for calculating and returning the time has passed
     // between the start and finish
     // for example if the time is 5 seconds left it will return 5000 milliseconds
-    public long getElaspedTime() {
+    public long getElapsedTime() {
         return endTime - startTime;
     }
 
     /**
     * This method calculates the words per minute of the user and time remaining
-    * @param elaspedTimeMillis represents how many seconds the user has typed the words
-    * @param wordcount How many words the user has typed and counts it
-    * @return This method will return the words per minute of the user by dividing the words counted and total minutes
+    * @param elapsedTimeMillis represents how many seconds the user has typed the words
+    * @param wordCount How many words the user has typed and counts it
     */
     public double calculateWPM(int wordCount) {
-        long elapsedTimeMillis = getElaspedTime();
-
-        // this is the formula for calculating words per minute
-        // example 200 words / 2 minutes = 100 words per minute
-        double elapsedTimeMinutes = elapsedTimeMillis / 60000.0; // converted milliseconds to minutes
+        long elapsedTimeMillis = getElapsedTime();
+        double elapsedTimeMinutes = elapsedTimeMillis / 60000.0;
         return wordCount / elapsedTimeMinutes;
     }
 }

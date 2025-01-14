@@ -4,9 +4,11 @@
  * Timer class 
  */
 
- /* This is the timer class that will return the time of the user typing words and words per minute
+ /** This is the timer class that will return the time of the user typing words and words per minute
+  * @param long is a data type that represents the time, it a datatype I found in the internet 
+  * @return long returns the time of the user typing the words and words per minute
   * 
-  */
+  **/
 public class Timer {
     // Creates instance variables for the timer class and adding the long method
     private long startTime;

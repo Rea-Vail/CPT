@@ -7,6 +7,11 @@
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * ExpressionManager class is a manager that will manage expression of words that the user will type
+ * @param LinkedList<Expression> a data structure that uses LinkedList to store the expressions 
+ * @return LinkedList<Expression> and basically returns the expressions stored in the linkedlist by the user
+ **/
 // some testing and changes will be deleted or used !
 public class ExpressionManager {
     // creates a private list for linkedlist of expressions
