@@ -4,12 +4,12 @@
  * Timer class 
  */
 
- /** This is the timer class that will return the time of the user typing words and words per minute
-  * @param long is a data type that represents the time, it a datatype I found in the internet 
-  * @return long returns the time of the user typing the words and words per minute
-  * 
-  **/
-public class Timer {
+/** This is the timer class that will return the time of the user typing words and words per minute
+ * @param long is a data type that represents the time, it a datatype I found on the internet 
+ * @return long returns the time of the user typing the words and words per minute
+ * 
+ **/
+public class Timer implements TimerInterface {
     // Creates instance variables for the timer class and adding the long method
     private long startTime;
     private long endTime;
@@ -21,35 +21,32 @@ public class Timer {
     }
 
     // adds a public void for the start time
+    @Override
     public void start() {
-        this.startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
     }
 
     // adds a public void for the end time
-    public void end() {
-        this.endTime = System.currentTimeMillis();
+    @Override
+    public void stop() {
+        endTime = System.currentTimeMillis();
     }
 
     // adds a public long for the get time
     // It then returns the end time minus the start time
-    public long getTime() {
-        return endTime - startTime;
-    }
-     // Elasped time is a way for calculating and returning the time has passed
-    // between the start and finish
-    // for example if the time is 5 seconds left it will return 5000 milliseconds
-    public long getElaspedTime() {
+    @Override
+    public long getElapsedTime() {
         return endTime - startTime;
     }
 
     /**
     * This method calculates the words per minute of the user and time remaining
-    * @param elaspedTimeMillis represents how many seconds the user has typed the words
-    * @param wordcount How many words the user has typed and counts it
+    * @param wordCount How many words the user has typed and counts it
     * @return This method will return the words per minute of the user by dividing the words counted and total minutes
     */
+    @Override
     public double calculateWPM(int wordCount) {
-        long elapsedTimeMillis = getElaspedTime();
+        long elapsedTimeMillis = getElapsedTime();
 
         // this is the formula for calculating words per minute
         // example 200 words / 2 minutes = 100 words per minute
