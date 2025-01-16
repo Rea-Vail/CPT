@@ -12,62 +12,65 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Timer;
 
-// Main class TypingSpeedTest
+/**
+ * Main class TypingSpeedTest
+ * 
+ * This class manages the typing speed test, including adding expressions and retrieving them.
+ */
 public class TypingSpeedTest {
     // add a private static final string for the welcome message moved here
     private static final String welcoming_message = "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
-            + "(~~~~~~~ Typing Speed Test ~~~~~~)\n"
-            + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
-            + "(Welcome to the Typing Speed Test!)\n"
-            + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)";
+                                                + "(~~~~~~~ Typing Speed Test ~~~~~~)\n"
+                                                + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)\n"
+                                                + "(Welcome to the Typing Speed Test!)\n"
+                                                + "(~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~)";
     // Instance private variable ExpressionManager
     private ExpressionManager expressionManager;
+    // Instance private variable Timer
+    private Timer timer;
 
-    // Creates a constructor for TypingSpeedTest
+    /**
+     * Constructor for TypingSpeedTest.
+     * Initializes the ExpressionManager and Timer.
+     */
     public TypingSpeedTest() {
         this.expressionManager = new ExpressionManager();
+        this.timer = new Timer();
     }
 
     /**
-     * Adds the expression to the expression manager to be stored
+     * Adds an expression to the expression manager.
      * 
-     * @param expression the expression of words the user type will be stored here
+     * @param expression the expression to be added.
      */
     public void addExpression(String expression) {
         expressionManager.addExpression(new Expression(expression));
     }
 
     /**
-     * Returns the list of expressions stored in the expression manager linkedlist
+     * Retrieves the list of expressions.
      * 
-     * @return the expressions stored in the expression manager out of the
-     *         linkedlist
+     * @return the list of expressions.
      */
     public List<Expression> getExpressions() {
         return expressionManager.getExpressions();
     }
 
-    // Main method of running TypingSpeedTest
     /**
      * Main method for TypingSpeedTest that will run the test and display the words.
-     * 
      * @param args represents the command line arguments
-     * @return the words that the user will type and the words per minute after the
-     *         test is finished
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean playAgain = true;
 
         while (playAgain) {
-            // Prints out the welcome message here for the user
+            // Prints out the welcome message here for the user 
             System.out.println(welcoming_message);
-
+            
             // Moved the typing test here and the timer
             TypingSpeedTest test = new TypingSpeedTest();
-            Timer timer = new Timer(); // Removed the unnecessary parameter
 
             // Adding difficulty that the user can choose
             // by picking 1, 2 or 3
@@ -80,18 +83,17 @@ public class TypingSpeedTest {
             int picking = scanner.nextInt();
             // flushes the line
             scanner.nextLine();
-
+            
             // List of words for each level that they will type
             List<String> easyLevel = Arrays.asList("The quick brown fox jumps over the lazy dog.");
             List<String> mediumLevel = Arrays.asList("I am a student at Father Michael Goetz Secondary School.");
-            List<String> proficientLevel = Arrays.asList(
-                    "This computer science course is one of the best courses I have ever taken and I would recommend it to anyone who is interested in learning how to do computer science.");
+            List<String> proficientLevel = Arrays.asList("This computer science course is one of the best courses I have ever taken and I would recommend it to anyone who is interested in learning how to do computer science.");
 
             // This is the list of the level selected by the user
             List<String> selectedLevel = null;
 
             // Implemented a switch statement for the user to pick their level
-            switch (picking) {
+            switch(picking) {
                 case 1:
                     selectedLevel = easyLevel;
                     break;
@@ -107,7 +109,7 @@ public class TypingSpeedTest {
             }
 
             // Add expressions to the test based on the level selected
-            for (String word : selectedLevel) {
+            for(String word : selectedLevel) {
                 test.addExpression(word);
             }
 
@@ -141,8 +143,7 @@ public class TypingSpeedTest {
 
             // Asking the user if they want to play again.
             System.out.println("Congrats for playing! Do you want to play again? (yes/no)");
-            // my source is here
-            // https://docs.oracle.com/en/java/javacard/3.1/guide/response-string-description.html
+            // my source is here https://docs.oracle.com/en/java/javacard/3.1/guide/response-string-description.html
             String response = scanner.nextLine(); // String respoinse are ways resoibse and enter the words
             // a simple if statement if the user says no the games will stop
             if (!response.equalsIgnoreCase("yes")) {
@@ -155,39 +156,36 @@ public class TypingSpeedTest {
 }
 
 /**
- * This class is to represents the expression of words by using string text and
- * ToString methods
- * 
- * @param Expression represents the expression of words for TypingSpeedTest
- *                   It works as a way for words to be placed in here and making
- *                   the user type the words here.
- * @return text returns the text of the expression/words
+ * This class represents an expression of words using a string text.
+ * It is used in the TypingSpeedTest to store and manage the words that the user will type.
  */
 class Expression {
-    // adds a instance string
+    // Instance variable for the text of the expression
     private String text;
 
-    // Creating a constructor for string text
+    /**
+     * Constructor for the Expression class.
+     * 
+     * @param text the text of the expression.
+     */
     public Expression(String text) {
         this.text = text;
     }
 
     /**
-     * This method extracts the text of the expression by the user
+     * Retrieves the text of the expression.
      * 
-     * @return the text of the expression
+     * @return the text of the expression.
      */
-    // creating a public string that returns a string being the text
     public String getText() {
         return text;
     }
 
     /**
-     * This returns the string represetation of the expression using String toString
+     * Returns a string representation of the expression.
      * 
-     * @return the text of the expression to be displayed in the terminal!
+     * @return a string representation of the expression.
      */
-    // This toString returns the text of the expression
     @Override
     public String toString() {
         return "Expression{" + "text='" + text + '\'' + '}';
@@ -195,43 +193,35 @@ class Expression {
 }
 
 /**
- * Creates a class for expressionManager this is the only data structured used
- * for this CPT
+ * Creates a class for ExpressionManager
  * 
- * @param ExpressionManager represents linkedlist for the expressions and it
- *                          will manage the expressions of words
- *                          It will be stored as a linkedlist in this following
- *                          class!
- * @return expressions returns expressions as it will be stored within the
- *         linkedlist of expressions
+ * This class manages a list of expressions and provides methods to add and retrieve expressions.
  */
-
-// little issue was the name fixed changed!
 class ExpressionManager {
     // instance variable for expressions as linkedlist
     private List<Expression> expressions;
 
-    // constructor for the expression manager
+    /**
+     * Constructor for the ExpressionManager.
+     * Initializes the expressions list as a LinkedList.
+     */
     public ExpressionManager() {
         this.expressions = new LinkedList<>();
     }
 
     /**
-     * Adds the expression to the linkedlist of expressions
+     * Adds an expression to the expressions list.
      * 
-     * @param expression will be the expression of words that the user will type be
-     *                   added here
-     * 
+     * @param expression the expression to be added.
      */
-    // adds a public void for expression
     public void addExpression(Expression expression) {
         expressions.add(expression);
     }
 
     /**
-     * Returns the list of expressions
+     * Retrieves the list of expressions.
      * 
-     * @return the expressions stored in the linkedlist of expressions
+     * @return the list of expressions.
      */
     public List<Expression> getExpressions() {
         return expressions;
@@ -241,13 +231,11 @@ class ExpressionManager {
 /**
  * Creates a class for Timer
  * This class is used for timing the user typing the words out!
- * 
  * @param timer represents the timer for the user typing the words
- * @return startime returns the start time while endtime returns the end time
- *         after the test is finish
- *         After it over it will return the WPM and time remaining of the test!
+ * @return startime returns the start time while endtime returns the end time after the test is finish
+ * After it over it will return the WPM and time remaining of the test!
  */
-class Timer implements TimerInterface {
+class Timer  {
     // Implemented a long data type that basically represents the int values of the
     // time
     // I got this data type from this
@@ -256,38 +244,33 @@ class Timer implements TimerInterface {
     private long endTime;
 
     /**
-     * Starts the timer of the test by recording the start time
+     * Starts the timer by recording the current system time in milliseconds.
      */
-    // the data type I got currentTimeMillis is from this
-    // https://www.tutorialspoint.com/java/lang/system_currenttimemillis.htm
     public void start() {
         startTime = System.currentTimeMillis();
     }
 
     /**
-     * Stops the timer of the test by recording the end time after the user is done
-     * typing
+     * Stops the timer by recording the current system time in milliseconds.
      */
     public void stop() {
         endTime = System.currentTimeMillis();
     }
 
     /**
-     * Calculates the elasped time or remaining time of the user after the test
+     * Calculates the elapsed time between the start and stop of the timer.
      * 
-     * @return elapsedTime returns the end time minus the start time in milliseconds
+     * @return the elapsed time in milliseconds.
      */
     public long getElapsedTime() {
         return endTime - startTime;
     }
 
     /**
-     * This method calculates the words per minute of the user and time remaining
+     * Calculates the words per minute (WPM) based on the number of words typed and the elapsed time.
      * 
-     * @param elapsedTimeMillis represents how many seconds the user has typed the
-     *                          words
-     * @param wordCount         How many words the user has typed and counts it
-     * @return Word per muinute after the test is finished
+     * @param wordCount the number of words typed by the user.
+     * @return the words per minute (WPM) calculated.
      */
     public double calculateWPM(int wordCount) {
         long elapsedTimeMillis = getElapsedTime();
