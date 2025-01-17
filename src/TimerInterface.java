@@ -5,7 +5,7 @@
  */
 
  /**
-  * This class is a interface for timer were
+  * This class is a interface for timer that will be used in the TypingTest class and it basically makes a new(fake) data type
   * @param start() method that will start the timer
   * @param stop() method that will stop the timer
   * @param getElapsedTime() method that will get the elapsed time
