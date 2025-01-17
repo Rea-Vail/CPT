@@ -102,7 +102,7 @@ public class TypingSpeedTest {
             // I got array.aslist from https://www.geeksforgeeks.org/arrays-aslist-method-in-java-with-examples/
             List<String> easyLevel = Arrays.asList("The quick brown fox jumps over the lazy dog.");
             List<String> mediumLevel = Arrays.asList("I am a student at Father Michael Goetz Secondary School.");
-            List<String> proficientLevel = Arrays.asList("This computer science course is one of the best courses I have ever taken and I would recommend it to anyone who is interested in learning how to do computer science.");
+            List<String> proficientLevel = Arrays.asList("This computer science course is one of the best courses I have ever taken. I would recommend it to anyone who is interested in learning how to learn computer science and pursuing computer science.");
             List<String> trollLevel = Arrays.asList("Pineapple on pizza is the best thing created, it adds flavors to the pizza and while at the same time being the best.");
 
             // This is the list of the level selected by the user
