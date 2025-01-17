@@ -7,7 +7,6 @@
 // Heavily inspired by most typing games such as monkeytype
 // https://monkeytype.com/ 
 // Importing the libraries needed for this typingspeedtest
-// importing list, linkedlist and arrays
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
