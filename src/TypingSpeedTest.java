@@ -65,6 +65,12 @@ public class TypingSpeedTest {
         Scanner scanner = new Scanner(System.in);
         boolean playAgain = true;
 
+        /**
+         * Creates a while loop if the user wants to play the game again or not
+         * 
+         * @param playAgain is the boolean to check if the user wants to play again
+         * @return if the user says no to the games it will just stop.
+         */
         while (playAgain) {
             // Prints out the welcome message here for the user 
             System.out.println(welcoming_message);
@@ -72,27 +78,41 @@ public class TypingSpeedTest {
             // Moved the typing test here and the timer
             TypingSpeedTest test = new TypingSpeedTest();
 
-            // Adding difficulty that the user can choose
-            // by picking 1, 2 or 3
+            // Prints out the levels by picking 1, 2 or 3
             System.out.println("1. Easy Level ");
             System.out.println("2. Medium Level");
             System.out.println("3. Proficient level");
+            System.out.println("4. Troll Level");
             System.out.println("Pick your difficulty");
 
-            // Allows the user to pick which difficulty they want.
             int picking = scanner.nextInt();
             // flushes the line
             scanner.nextLine();
             
-            // List of words for each level that they will type
+            /**
+             * These are the list of the levels that the user will choose from
+             * Within the list of the levels are setences that the user will be typing
+             * List<string> Stores collections of elements of data types being the string or the setences
+             * Arrays.asList is a method that basically takes the array and converts it into a list
+             * @param easyLevel is the list of the easy level
+             * @param mediumLevel is the list of the medium level
+             * @param proficientLevel is the list of the proficient level
+             * 
+             */
+            // I got array.aslist from https://www.geeksforgeeks.org/arrays-aslist-method-in-java-with-examples/
             List<String> easyLevel = Arrays.asList("The quick brown fox jumps over the lazy dog.");
             List<String> mediumLevel = Arrays.asList("I am a student at Father Michael Goetz Secondary School.");
             List<String> proficientLevel = Arrays.asList("This computer science course is one of the best courses I have ever taken and I would recommend it to anyone who is interested in learning how to do computer science.");
+            List<String> trollLevel = Arrays.asList("Pineapple on pizza is the best thing created, it adds flavors to the pizza and while at the same time being the best.");
 
             // This is the list of the level selected by the user
             List<String> selectedLevel = null;
 
-            // Implemented a switch statement for the user to pick their level
+            /**
+             * Switch statement to check which level the user will choose
+             * @param picking is the input that the user will choose
+             * @return the level that the user will be playing if not it will quite the game.
+             */
             switch(picking) {
                 case 1:
                     selectedLevel = easyLevel;
@@ -103,6 +123,9 @@ public class TypingSpeedTest {
                 case 3:
                     selectedLevel = proficientLevel;
                     break;
+                case 4:
+                    selectedLevel = trollLevel;
+                    break;    
                 default:
                     System.out.println("No level was chosen. Quitting the game....");
                     return;
@@ -115,18 +138,33 @@ public class TypingSpeedTest {
 
             // Debugging: Print all expressions added to the test
             System.out.println("Expressions added to the test:");
+
+            /**
+             * A enhanced for loop that will display the words that the user will type
+             * @return the words that the user typed
+             */
+
             for (Expression expression : test.getExpressions()) {
                 System.out.println(expression.getText());
             }
 
-            // Goes through a for loop that will display the words and the user will type the following
+            /**
+             * Creates a enchaned for loop that will display the words and the user will type the following using the linklist
+             * Uses scanner to get the user input
+             *   
+             */ 
             for(Expression expression : test.getExpressions()) {
                 System.out.println("Enter the following: " + expression.getText());
                 test.timer.start();
                 String userExpressString = scanner.nextLine();
                 test.timer.stop();
 
-                // This simple if else statement checks if the user has typed the same input as displayed in the following
+                /**
+                 * Creates a if statement to check if the user typed the correct words 
+                 * 
+                 * @param userExpressString is the words that the user typed
+                 * @return if the user types it correct he will get correct if not they will get wrong answer
+                 */
                 if (userExpressString.equals(expression.getText())) {
                     System.out.println("Correct!");
                 } else {

@@ -29,7 +29,7 @@ public class TypingTest {
         test.addExpression("Typing Speed Test");
 
         // Act
-        int actual = test.getExpressions().size();
+        int actual = test.getExpressions().size(); // returns the size of the list
         String actualFirstExpression = test.getExpressions().get(0).getText();
         String actualSecondExpression = test.getExpressions().get(1).getText();
 
@@ -55,7 +55,7 @@ public class TypingTest {
      /**
       * This pauses the application for 10 seconds to simulate the user typing
       * The try-catch method below allows the program to pause for 10 seconds via threat.sleep(10000)
-      * If ever the appliation is interrupted while in waiting it will catch the interrauptioend exception
+      * If ever the application is interrupted while in waiting it will catch the interrauptioend exception
       * It then prints out the error message being printstacktrace.
       *
       * @param Thread.sleep(2000) is used to simulate the delay of 2 seconds

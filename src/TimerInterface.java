@@ -8,10 +8,11 @@
   * This class is a interface for timer were
   * @param start() method that will start the timer
   * @param stop() method that will stop the timer
+  * @param getElapsedTime() method that will get the elapsed time
+  * @param calculateWPM() method that will calculate the words per minute
   * @return The given time, elasped time and wpm
   * It works as a way for the user to his/her improvement
   **/
-
 
 public interface TimerInterface {
     void start();

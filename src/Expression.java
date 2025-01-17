@@ -19,10 +19,19 @@ public class Expression {
         this.text = text;
     }
 
+    /**
+     * Method returns the text of expression
+     * @return returns the text
+     */
     public String getText() {
         return text;
     }
+    
 
+    /**
+    * This method is used to return the the words of expression
+    *  @return text returns the text of the expression
+    */
     @Override
     public String toString() {
         return "Expression{" + "text='" + text + '\'' + '}';

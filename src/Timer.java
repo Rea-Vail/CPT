@@ -20,20 +20,27 @@ public class Timer implements TimerInterface {
         this.endTime = 0;
     }
 
-    // adds a public void for the start time
+    /**
+     * Starts the timer by recording the current system time in milliseconds.
+     */
     @Override
     public void start() {
         startTime = System.currentTimeMillis();
     }
 
-    // adds a public void for the end time
+     /**
+     * Stops the timer by recording the current system time in milliseconds.
+     */    
     @Override
     public void stop() {
         endTime = System.currentTimeMillis();
     }
 
-    // adds a public long for the get time
-    // It then returns the end time minus the start time
+    /**
+     * Calculates the elapsed time between the start and stop of the timer.
+     * 
+     * @return the elapsed time in milliseconds.
+     */
     @Override
     public long getElapsedTime() {
         return endTime - startTime;
