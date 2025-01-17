@@ -65,7 +65,7 @@ public class TypingTest {
      // Act
      // https://www.geeksforgeeks.org/difference-between-try-catch-and-if-else-statements-in-php/ 
      try {
-        Thread.sleep(5000); // 10 seconds
+        Thread.sleep(5000); // 5 seconds
      } catch (InterruptedException e) {
         e.printStackTrace();
      }
