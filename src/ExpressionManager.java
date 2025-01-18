@@ -13,13 +13,14 @@ import java.util.List;
  * @return LinkedList<Expression> and basically returns the expressions stored in the linkedlist by the user
  **/
 
-// some testing and changes will be deleted or used !
-public class ExpressionManager {
-    // creates a private list for linkedlist of expressions
+class ExpressionManager {
+    // instance variable for expressions as linkedlist
     private List<Expression> expressions;
 
-
-    // creagte a constructor for the expression manager and using linkedlist as the data structure
+    /**
+     * Constructor for the ExpressionManager.
+     * Initializes the expressions list as a LinkedList.
+     */
     public ExpressionManager() {
         this.expressions = new LinkedList<>();
     }
@@ -41,5 +42,4 @@ public class ExpressionManager {
     public List<Expression> getExpressions() {
         return expressions;
     }
-
 }

@@ -29,9 +29,3 @@ To Install Typing Test, follow the steps below:
 # Credits
 - Programmer - Arwin Lado (https://github.com/Rea-Vail)
 
-
-```java
-public static void main(String[] args) {
-    System.out.println("Hello world");
-} 
-```

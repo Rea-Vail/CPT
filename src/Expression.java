@@ -10,28 +10,33 @@
   * @return text returns the text of the expression
   * It works as a way for the words to be placed here after the user is done typing.
   **/
-public class Expression {
-    // creates a private string for text
+class Expression {
+    // Instance variable for the text of the expression
     private String text;
 
-    // creates a constructor for the expression 
+    /**
+     * Constructor for the Expression class.
+     * 
+     * @param text the text of the expression.
+     */
     public Expression(String text) {
         this.text = text;
     }
 
     /**
-     * Method returns the text of expression
-     * @return returns the text
+     * Retrieves the text of the expression.
+     * 
+     * @return the text of the expression.
      */
     public String getText() {
         return text;
     }
-    
 
     /**
-    * This method is used to return the the words of expression
-    *  @return text returns the text of the expression
-    */
+     * Returns a string representation of the expression.
+     * 
+     * @return a string representation of the expression.
+     */
     @Override
     public String toString() {
         return "Expression{" + "text='" + text + '\'' + '}';
